@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zombiekanapa [glitch_v2]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg: #050505;
+            --main-fg: #33FF33;
+            --main-fg-dim: #22AA22;
+            --glitch-red: #FF0000;
+            --glitch-blue: #0000FF;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            background-color: var(--main-bg);
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 2rem;
+            color: var(--main-fg);
+            font-family: 'Black Ops One', 'Impact', sans-serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            border: 1px solid var(--main-fg-dim);
+            overflow: hidden; /* Important for glitch effect */
+            position: relative;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            height: 100%;
+            overflow-y: auto;
+            /* Custom scrollbar for aesthetics */
+            scrollbar-width: thin;
+            scrollbar-color: var(--main-fg-dim) var(--main-bg);
+        }
+
+        .container::-webkit-scrollbar {
+          width: 8px;
+        }
+        .container::-webkit-scrollbar-track {
+          background: var(--main-bg);
+        }
+        .container::-webkit-scrollbar-thumb {
+          background-color: var(--main-fg-dim);
+        }
+
+
+        /* ===== GLITCH STYLES ===== */
+
+        .glitch-text {
+            position: relative;
+            text-transform: uppercase;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--main-bg);
+            overflow: hidden;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--glitch-red);
+            clip-path: inset(50% 0 51% 0);
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--glitch-blue);
+            clip-path: inset(49% 0 50% 0);
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        
+        body.glitching .glitch-wrapper {
+            animation: body-glitch-shake 0.4s steps(2, end) infinite;
+        }
+
+        @keyframes glitch-anim-1 {
+            0%, 100% { clip-path: inset(25% 0 76% 0); }
+            20% { clip-path: inset(50% 0 2% 0); }
+            40% { clip-path: inset(90% 0 1% 0); }
+            60% { clip-path: inset(10% 0 55% 0); }
+            80% { clip-path: inset(40% 0 20% 0); }
+        }
+
+        @keyframes glitch-anim-2 {
+            0%, 100% { clip-path: inset(75% 0 6% 0); }
+            20% { clip-path: inset(2% 0 50% 0); }
+            40% { clip-path: inset(40% 0 1% 0); }
+            60% { clip-path: inset(80% 0 5% 0); }
+            80% { clip-path: inset(10% 0 60% 0); }
+        }
+        
+        @keyframes body-glitch-shake {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(5px, -3px); }
+            50% { transform: translate(-3px, 3px); }
+            75% { transform: translate(4px, 0px); }
+        }
+
+        /* ===== General Styles ===== */
+
+        a {
+            color: var(--main-fg);
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        a:hover, a.active-glitch {
+            background-color: var(--main-fg);
+            color: var(--main-bg);
+            padding: 2px 4px;
+        }
+
+        header, section {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--main-fg-dim);
+        }
+        section:last-child { border: none; }
+
+        h1, h2, h3 {
+            font-weight: normal;
+            border-bottom: 1px solid var(--main-fg-dim);
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 65ch;
+            letter-spacing: normal;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="glitch-wrapper">
+    <div class="container">
+        <header>
+            <nav>
+                <a href="#about" class="glitch-target">About</a>
+                <a href="#projects" class="glitch-target">Projects</a>
+                <a href="#socials" class="glitch-target">Socials</a>
+                <a href="#contact" class="glitch-target">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home">
+                <h1 id="main-heading" class="glitch-text glitch-target" data-text="zombiekanapa">zombiekanapa</h1>
+                <p>Digital consciousness exploring the intersections of sound, multimedia and code.</p>
+            </section>
+
+            <section id="about">
+                <h2 class="glitch-target">[ About ]</h2>
+                <p>This is a curated collection of my work. For the complete, unfiltered list, visit my Linktree.</p>
+                <a href="https://linktr.ee/zombiekanapa" target="_blank" class="glitch-target">--&gt; Full Link Collection</a>
+            </section>
+
+            <section id="projects">
+                <h2 class="glitch-target">[ Projects ]</h2>
+                <h3 class="glitch-target">&gt; Code &amp; AI</h3>
+                <div class="link-grid">
+                    <a href="https://github.com/KanapaZombie" target="_blank" class="glitch-target">GitHub</a>
+                    <a href="https://huggingface.co/zombiekanapa" target="_blank" class="glitch-target">Hugging Face</a>
+                    <a href="https://www.kaggle.com/szymonkarpierz" target="_blank" class="glitch-target">Kaggle</a>
+                </div>
+
+                <h3 class="glitch-target">&gt; Art &amp; Visuals</h3>
+                <div class="link-grid">
+                    <a href="https://zombiekanapa.artstation.com/" target="_blank" class="glitch-target">ArtStation</a>
+                    <a href="https://vimeo.com/zombiekanapa" target="_blank" class="glitch-target">Vimeo</a>
+                </div>
+                
+                <h3 class="glitch-target">&gt; Music &amp; Audio</h3>
+                <div class="link-grid">
+                    <a href="https://zombiekanapa.bandcamp.com/" target="_blank" class="glitch-target">Bandcamp</a>
+                    <a href="https://soundcloud.com/zombiekanapa" target="_blank" class="glitch-target">SoundCloud</a>
+                </div>
+            </section>
+
+            <section id="socials">
+                <h2 class="glitch-target">[ Socials ]</h2>
+                <div class="link-grid">
+                    <a href="https://twitter.com/ZKanapa" target="_blank" class="glitch-target">Twitter / X</a>
+                    <a href="https://www.instagram.com/kanapazombie/" target="_blank" class="glitch-target">Instagram</a>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2 class="glitch-target">[ Contact &amp; Support ]</h2>
+                <div class="link-grid">
+                    <a href="https://www.linkedin.com/in/szymonkarpierz/" target="_blank" class="glitch-target">LinkedIn</a>
+                    <a href="https://buymeacoffee.com/zombiekanapa" target="_blank" class="glitch-target">Buy Me a Coffee</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const glitchTargets = document.querySelectorAll('.glitch-target');
+        const mainHeading = document.getElementById('main-heading');
+        const chars = "!<>-_\\/[]{}—=+*^?#________";
+
+        // --- Main timed glitch effect ---
+        const triggerMajorGlitch = () => {
+            document.body.classList.add('glitching');
+            scrambleText(mainHeading, 20);
+            
+            setTimeout(() => {
+                document.body.classList.remove('glitching');
+            }, 600);
+        };
+
+        // --- Text scrambling logic ---
+        const scrambleText = (element, duration) => {
+            const originalText = element.dataset.text;
+            let counter = 0;
+
+            const intervalId = setInterval(() => {
+                let scrambled = '';
+                for (let i = 0; i < originalText.length; i++) {
+                    if (counter > i || Math.random() > 0.5) {
+                        scrambled += originalText[i];
+                    } else {
+                        scrambled += chars[Math.floor(Math.random() * chars.length)];
+                    }
+                }
+                element.textContent = scrambled;
+
+                if (counter >= originalText.length + 5) {
+                    clearInterval(intervalId);
+                    element.textContent = originalText;
+                }
+                counter++;
+            }, 50);
+        };
+
+        // --- Hover glitch effect ---
+        glitchTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => {
+                if (!document.body.classList.contains('glitching')) {
+                    scrambleText(target, 5);
+                }
+            });
+        });
+        
+        // --- Activate major glitch periodically ---
+        setInterval(triggerMajorGlitch, 30000);
+    });
+</script>
+</body>
+</html>
